@@ -51,16 +51,34 @@ final class GPXDateParser {
     
     /// Parses an ISO8601 formatted date string as native Date type.
     func parse(date string: String?) -> Date? {
-        guard let NonNilString = string else {
+        guard var NonNilString = string else {
             return nil
         }
+        
+        // Test if date string has millseconds in it, and remove that portion if it does
+        if NonNilString.contains(".") {
+            let dotIndex = NonNilString.firstIndex(of: ".")
+            if let indexDot = dotIndex {
+                let indexEnd = NonNilString.index(indexDot, offsetBy: 3)
+                NonNilString.removeSubrange(indexDot...indexEnd)
+            }
+        }
+        
+        return ISO8601DateFormatter().date(from: NonNilString)
+
+        
+//        print(NonNilString)
+//        let newDate = "2014-02-25T17:51:21.000Z"
+//        print(ISO8601DateFormatter().date(from: NonNilString))
+//        ISO8601DateFormatter.Options.withFractionalSeconds
+//        print(ISO8601DateFormatter().date(from: NonNilString))
         
         #if os(Linux)
         return ISO8601DateFormatter().date(from: NonNilString)
         #else // os(Linux)
         _ = withVaList([year, month, day, hour, minute,
                         second], { pointer in
-                            vsscanf(NonNilString, "%d-%d-%dT%d:%d:%dZ", pointer)
+            vsscanf(NonNilString, "%d-%d-%dT%d:%d:%dZ", pointer)
                             
         })
         
@@ -72,13 +90,22 @@ final class GPXDateParser {
         components.month = month.pointee
         components.second = second.pointee
         
+        print(year.pointee as Int)
+        print(month.pointee)
+        print(day.pointee)
+        print(hour.pointee)
+        print(minute.pointee)
+        print(second.pointee)
+        
         if let calendar = Self.calendarCache[0] {
+            print(calendar.date(from: components))
             return calendar.date(from: components)
         }
         
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(secondsFromGMT: 0)!
         Self.calendarCache[0] = calendar
+        print(calendar.date(from: components))
         return calendar.date(from: components)
         #endif
     }

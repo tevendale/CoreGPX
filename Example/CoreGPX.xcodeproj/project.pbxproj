@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		12A64AED25DFBBD4006A5B01 /* GPXTest-DualLinks.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 12A64AE325DFBAB9006A5B01 /* GPXTest-DualLinks.gpx */; };
+		170F9DCC2CD95E2300FC16D7 /* CoreGPX in Frameworks */ = {isa = PBXBuildFile; productRef = 170F9DCB2CD95E2300FC16D7 /* CoreGPX */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -19,7 +20,6 @@
 		BF67E92A2217F2EE008B6202 /* GPXTest-TrackPointOnly.gpx in Resources */ = {isa = PBXBuildFile; fileRef = BF67E9292217F2EE008B6202 /* GPXTest-TrackPointOnly.gpx */; };
 		BF7F905D21F7501800359484 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F905C21F7501800359484 /* CreationViewController.swift */; };
 		BFD4523D21E9F17A002ECA3A /* ParseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD4523C21E9F17A002ECA3A /* ParseViewController.swift */; };
-		D2FE0F1B39CAD071986EF792 /* Pods_CoreGPX_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1199081F763AEFCB013E8280 /* Pods_CoreGPX_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2FE0F1B39CAD071986EF792 /* Pods_CoreGPX_Example.framework in Frameworks */,
+				170F9DCC2CD95E2300FC16D7 /* CoreGPX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +231,6 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 3X69W4AQD6;
 						LastSwiftMigration = 1020;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -251,6 +250,9 @@
 				Base,
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
+			packageReferences = (
+				170F9DCA2CD95E2300FC16D7 /* XCLocalSwiftPackageReference "../../CoreGPX" */,
+			);
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -493,7 +495,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -503,10 +506,13 @@
 			baseConfigurationReference = FC31721A2B8A45B5DADF76C5 /* Pods-CoreGPX_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3X69W4AQD6;
+				DEVELOPMENT_TEAM = XKDKNPD4RC;
 				INFOPLIST_FILE = GPXKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = vincent.CoreGPX.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -520,10 +526,13 @@
 			baseConfigurationReference = 25FD7EB183A4A9CE3963AB4F /* Pods-CoreGPX_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3X69W4AQD6;
+				DEVELOPMENT_TEAM = XKDKNPD4RC;
 				INFOPLIST_FILE = GPXKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = vincent.CoreGPX.example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -544,7 +553,11 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -560,7 +573,11 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -599,6 +616,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		170F9DCA2CD95E2300FC16D7 /* XCLocalSwiftPackageReference "../../CoreGPX" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../CoreGPX;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		170F9DCB2CD95E2300FC16D7 /* CoreGPX */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreGPX;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
 }
